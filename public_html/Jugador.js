@@ -5,6 +5,7 @@ comprobarDades();
 
 
 function generarJugador(){
+    var pos;
     jugador.set("X", Math.floor(Math.random() * 30));
     jugador.set("Y", Math.floor(Math.random() * 30));
     //Aquestes variables son momentanies ja que en el futur no seran aleatories.

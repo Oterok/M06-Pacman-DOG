@@ -11,6 +11,7 @@ function generarFantasma() {
     for (var i = 0; i != quantitatFantasmas; i++) {
         fantasma.set("X", Math.floor(Math.random() * 30));
         fantasma.set("Y", Math.floor(Math.random() * 30));
+        //0=Up, 1=Down, 2=Left, 3=Right
         fantasma.set("Dir", Math.floor(Math.random() * 4));
         grupFantasmas[i]=fantasma;
     }
