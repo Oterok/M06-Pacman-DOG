@@ -1,9 +1,28 @@
 //---------------------------------------------------------------------------------------------------------------------------
-//--------------------------------------------TABLERO------------------------------------------------------------------------
+//--------------------------------------------Llamada a funciones y variables globales---------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------
 var tablero;
 var imprimir = "";
+//El jugador sera un hasmap que contindra la X, Y i la Dir
+var jugador = new Map();
+//El fantasma sera un hasmap que contindra la X, Y i la Dir
+var grupFantasmas = [];
+var quantitatFantasmas = 3;
+
 generarTablero();
+
+generarJugador();
+//comprobarDatosJugador(); //Variable que imprime con alert la inforamcion del jugador.
+
+generarFantasma();
+//comprobarDatosFantasma(); //Variable que imprime con alert la inforamcion de los fantasmas.
+
+imprimirTablero();
+
+//---------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------TABLERO------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------
+
 
 
 function generarTablero() {
@@ -49,10 +68,7 @@ function generarTablero() {
 //---------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------JUGADOR------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------
-//El jugador sera un hasmap que contindra la X, Y i la Dir
-var jugador = new Map();
-generarJugador();
-//comprobarDadesJugador();
+
 
 
 function generarJugador() {
@@ -64,7 +80,7 @@ function generarJugador() {
     jugador.set("Teclado", Math.floor(Math.random() * 4));
 }
 
-function comprobarDadesJugador() {
+function comprobarDatosJugador() {
     alert("X: " + jugador.get("X"));
     alert("Y: " + jugador.get("Y"));
     alert("Dir: " + jugador.get("Dir"));
@@ -75,27 +91,20 @@ function comprobarDadesJugador() {
 //--------------------------------------------FANTASMAS----------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------
 
-//El fantasma sera un hasmap que contindra la X, Y i la Dir
-var grupFantasmas = [];
-var quantitatFantasmas = 3;
-generarFantasma();
-//comprobarDadesFantasma();
-
-
 function generarFantasma() {
 
     for (var i = 0; i != quantitatFantasmas; i++) {
-        var pos = posicioValida();
+        var pos = posicionValida();
         var fantasma = new Map();
         fantasma.set("X", pos[0]);
         fantasma.set("Y", pos[1]);
-        fantasma.set("Dir", direccionValida(fantasma.get("X"), fantasma.get("Y")));
+        fantasma.set("Dir", direccionInicialValida(fantasma.get("X"), fantasma.get("Y")));
         grupFantasmas[i] = fantasma;
     }
 
 }
 
-function comprobarDadesFantasma() {
+function comprobarDatosFantasma() {
     for (var i = 0; i != quantitatFantasmas; i++) {
         alert("Fantasma" + i + "-X: " + grupFantasmas[i].get("X"));
         alert("Fantasma" + i + "-Y: " + grupFantasmas[i].get("Y"));
@@ -107,11 +116,9 @@ function comprobarDadesFantasma() {
 //---------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------VARIABLES COMUNAS--------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------
-posicioValida();
-imprimirTablero();
-var posValida;
 
-function direccionValida(posiX, posiY) {
+
+function direccionInicialValida(posiX, posiY) {
     //0=Up, 1=Down, 2=Left, 3=Right, 4=Stop
     var direccionValida = [0, 0, 0, 0, 0];
     var count=5;
@@ -133,7 +140,7 @@ function direccionValida(posiX, posiY) {
     return count;
 }
 
-function posicioValida() {
+function posicionValida() {
     posValida = [0, 0];
     while (tablero[posValida[0]][posValida[1]] == 0) {
         posValida[0] = Math.floor(Math.random() * 30); //Es la X
