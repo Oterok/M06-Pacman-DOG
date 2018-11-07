@@ -89,8 +89,7 @@ function generarFantasma() {
         var fantasma = new Map();
         fantasma.set("X", pos[0]);
         fantasma.set("Y", pos[1]);
-        direccionValida(fantasma.get("X"), fantasma.get("Y"));
-        fantasma.set("Dir", Math.floor(Math.random() * 4));
+        fantasma.set("Dir", direccionValida(fantasma.get("X"), fantasma.get("Y")));
         grupFantasmas[i] = fantasma;
     }
 
@@ -130,6 +129,7 @@ function direccionValida(posiX, posiY) {
     while(direccionValida[count] == 0){
         count = Math.floor(Math.random() * 4);
     }
+    return count;
 }
 
 function posicioValida() {
