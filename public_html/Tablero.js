@@ -100,6 +100,7 @@ function comprobarDadesFantasma() {
         alert("Fantasma" + i + "-X: " + grupFantasmas[i].get("X"));
         alert("Fantasma" + i + "-Y: " + grupFantasmas[i].get("Y"));
         alert("Fantasma" + i + "-Dir: " + grupFantasmas[i].get("Dir"));
+        
     }
 }
 
