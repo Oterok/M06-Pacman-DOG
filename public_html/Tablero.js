@@ -31,7 +31,7 @@ function generarTablero() {
     tablero = [
 //               9  8  7  6  5  4  3  2  1  0  9  8  7  6  5  4  3  2  1  0  9  8  7  6  5  4  3  2  1  0
 //               0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5  6  7  8  9 
-        /*0 9*/ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0], /*0 9*/
+        /*0 9*/ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], /*0 9*/
         /*1 8*/ [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], /*1 8*/
         /*2 7*/ [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0], /*2 7*/
         /*3 6*/ [0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0], /*3 6*/
@@ -40,18 +40,18 @@ function generarTablero() {
         /*6 3*/ [0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0], /*6 3*/
         /*7 2*/ [0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0], /*7 2*/
         /*8 1*/ [0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0], /*8 1*/
-        /*9 0*/ [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], /*9 0*/
+        /*9 0*/ [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], /*9 0*/
         /*0 9*/ [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0], /*0 9*/
         /*1 8*/ [0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0], /*1 8*/
         /*2 7*/ [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0], /*2 7*/
         /*3 6*/ [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0], /*3 6*/
         /*4 5*/ [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0], /*4 5*/
-        /*5 4*/ [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1], /*5 4*/
+        /*5 4*/ [0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0], /*5 4*/
         /*6 3*/ [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0], /*6 3*/
         /*7 2*/ [0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0], /*7 2*/
         /*8 1*/ [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0], /*8 1*/
         /*9 0*/ [0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0], /*9 0*/
-        /*0 9*/ [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], /*0 9*/
+        /*0 9*/ [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], /*0 9*/
         /*1 8*/ [0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0], /*1 8*/
         /*2 7*/ [0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0], /*2 7*/
         /*3 6*/ [0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0], /*3 6*/
@@ -60,7 +60,7 @@ function generarTablero() {
         /*6 3*/ [0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0], /*6 3*/
         /*7 2*/ [0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0], /*7 2*/
         /*8 1*/ [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0], /*8 1*/
-        /*9 0*/ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0], /*9 0*/
+        /*9 0*/ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], /*9 0*/
 //               9  8  7  6  5  4  3  2  1  0  9  8  7  6  5  4  3  2  1  0  9  8  7  6  5  4  3  2  1  0 
 //               0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5  6  7  8  9 
     ];
@@ -95,7 +95,7 @@ function comprobarDatosJugador() {
 
 function movimientoFantasma() {
     for (var i = 0; i != cantidadFantasmas; i++) {
-        var variables = movimientoValido();
+        var variables = movimientoValido(grupoFantasmas[i].get("X"), grupoFantasmas[i].get("Y"), grupoFantasmas[i].get("Dir"));
         grupoFantasmas[i].set("X", variables[0]);
         grupoFantasmas[i].set("Y", variables[1]);
         grupoFantasmas[i].set("Dir", variables[2]);
@@ -103,7 +103,6 @@ function movimientoFantasma() {
 }
 
 function generarFantasma() {
-
     for (var i = 0; i != cantidadFantasmas; i++) {
         var pos = posicionValida();
         var fantasma = new Map();
@@ -128,22 +127,24 @@ function comprobarDatosFantasma() {
 //--------------------------------------------VARIABLES COMUNAS--------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------
 
-function refrescar(){
-    //alert("Hola");
+function refrescar() {
+    document.body.innerHTML = "";
     movimientoFantasma();
+    //comprobarDatosFantasma();
     imprimirTablero();
-    setInterval('refrescar()',1000);
+    setInterval('refrescar()', 100);
 }
 
 function movimientoValido(posiX, posiY, dir) {
+    //alert("dir:" + dir);
     //0=Up(y+1), 1=Down(y-1), 2=Left(x-1), 3=Right(x+1), 4=Stop
     var direccionValida = [0, 0, 0, 0, 0];
-    var count = 5;
-    var variables = [0,0,0]; //Esta variable devolvera la X, la Y y la dir.
+    var variables = [0, 0, 0]; //Esta variable devolvera la X, la Y y la dir.
     //El switch comprueva donde se podra mover en funcion de la dirección que se tenia, 
     //no permite volver atras para evitar que un fantasma se quede siempre en dos casillas dando vueltas.
     switch (dir) {
         case 0:
+            //alert("0");
             if (tablero[posiX][posiY + 1] == 1) {
                 direccionValida[0] = 1
             }
@@ -155,6 +156,7 @@ function movimientoValido(posiX, posiY, dir) {
             }
             break;
         case 1:
+            //alert("1");
             if (tablero[posiX][posiY - 1] == 1) {
                 direccionValida[1] = 1
             }
@@ -166,6 +168,7 @@ function movimientoValido(posiX, posiY, dir) {
             }
             break;
         case 2:
+            //alert("2");
             if (tablero[posiX][posiY + 1] == 1) {
                 direccionValida[0] = 1
             }
@@ -177,6 +180,7 @@ function movimientoValido(posiX, posiY, dir) {
             }
             break;
         case 3:
+            //alert("3");
             if (tablero[posiX][posiY + 1] == 1) {
                 direccionValida[0] = 1
             }
@@ -191,27 +195,32 @@ function movimientoValido(posiX, posiY, dir) {
     //El while sirve para escoger una dirección aleatoria, en función 
     //de la variable direccionValida, un array que contendra las direcciones
     //a los que los fantasmas podran ir.
-    while (direccionValida[count] == 0) {
-        count = Math.floor(Math.random() * 4);
+    while (direccionValida[dir] != 0) {
+        dir = Math.floor(Math.random() * 4);
     }
-    variables[2] = count; //Contien la dirección del fantasma.
-    switch(count)
+
+    variables[2] = dir; //Contien la dirección del fantasma.
+    switch (dir)
     {
-        case 0: 
+        case 0:
+            //alert("Up");
             variables[0] = posiX; //Contien la X del fantasma.
-            variables[1] = posiY+1; //Contien la Y del fantasma.
+            variables[1] = posiY + 1; //Contien la Y del fantasma.
             break;
-        case 1: 
+        case 1:
+            //alert("Down");
             variables[0] = posiX; //Contien la X del fantasma.
-            variables[1] = posiY-1; //Contien la Y del fantasma.
+            variables[1] = posiY - 1; //Contien la Y del fantasma.
             break;
-        case 2: 
-            variables[0] = posiX-1; //Contien la X del fantasma.
+        case 2:
+            //alert("Left");
+            variables[0] = posiX - 1; //Contien la X del fantasma.
             variables[1] = posiY; //Contien la Y del fantasma.
             break;
-        case 3: 
+        case 3:
+            //alert("Right");
             variables[0] = posiX; //Contien la X del fantasma.
-            variables[1] = posiY+1; //Contien la Y del fantasma.
+            variables[1] = posiY + 1; //Contien la Y del fantasma.
             break;
     }
     return variables;
@@ -233,7 +242,8 @@ function direccionInicialValida(posiX, posiY) {
     if (tablero[posiX + 1][posiY] == 1) {
         direccionValida[3] = 1
     }
-    while (direccionValida[count] == 0) {
+
+    while (direccionValida[count] != 0) {
         count = Math.floor(Math.random() * 4);
     }
     return count;
@@ -278,13 +288,13 @@ function imprimirTablero() {
             } else if (grupoFantasmas[2].get("X") == x && grupoFantasmas[2].get("Y") == y) {
                 document.write("F3" + "&nbsp");
             } else {
-                
+
                 //Se podra poner document.write(tablero[x][y] + "&nbsp"); sin el 
                 //if y el else, pero por ahora quiero que no se impriman los 0.
                 //Solo el camino.
-                if(tablero[x][y]==1){
+                if (tablero[x][y] == 1) {
                     document.write(tablero[x][y] + "&nbsp");
-                }else{
+                } else {
                     document.write("0" + "&nbsp");
                 }
             }
