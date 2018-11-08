@@ -19,6 +19,7 @@ generarFantasma();
 
 imprimirTablero(); //Impimimos por primera vez el tablero.
 
+refrescar()//Este metodo entrara en bucle hasta que se acabe el juego.
 
 //---------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------TABLERO------------------------------------------------------------------------
@@ -73,7 +74,7 @@ function generarTablero() {
 
 
 function generarJugador() {
-    var pos = movimientoValido();
+    var pos = posicionValida();
     jugador.set("X", pos[0]);
     jugador.set("Y", pos[1]);
     //Aquestes variables son momentanies ja que en el futur no seran aleatories.
@@ -95,11 +96,9 @@ function comprobarDatosJugador() {
 function movimientoFantasma() {
     for (var i = 0; i != cantidadFantasmas; i++) {
         var variables = movimientoValido();
-        var fantasma = new Map();
-        fantasma.set("X", variables[0]);
-        fantasma.set("Y", variables[1]);
-        fantasma.set("Dir", variables[2]);
-        grupoFantasmas[i] = fantasma;
+        grupoFantasmas[i].set("X", variables[0]);
+        grupoFantasmas[i].set("Y", variables[1]);
+        grupoFantasmas[i].set("Dir", variables[2]);
     }
 }
 
@@ -130,6 +129,9 @@ function comprobarDatosFantasma() {
 //---------------------------------------------------------------------------------------------------------------------------
 
 function refrescar(){
+    //alert("Hola");
+    movimientoFantasma();
+    imprimirTablero();
     setInterval('refrescar()',1000);
 }
 
@@ -276,10 +278,14 @@ function imprimirTablero() {
             } else if (grupoFantasmas[2].get("X") == x && grupoFantasmas[2].get("Y") == y) {
                 document.write("F3" + "&nbsp");
             } else {
+                
+                //Se podra poner document.write(tablero[x][y] + "&nbsp"); sin el 
+                //if y el else, pero por ahora quiero que no se impriman los 0.
+                //Solo el camino.
                 if(tablero[x][y]==1){
                     document.write(tablero[x][y] + "&nbsp");
                 }else{
-                    document.write("=" + "&nbsp");
+                    document.write("0" + "&nbsp");
                 }
             }
 
