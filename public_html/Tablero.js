@@ -3,21 +3,22 @@
 //---------------------------------------------------------------------------------------------------------------------------
 var tablero;
 var imprimir = "";
-//El jugador sera un hasmap que contindra la X, Y i la Dir
+//El jugador y los fantamsas sera un hasmap que contindra la X, Y i la Dir
 var jugador = new Map();
-//El fantasma sera un hasmap que contindra la X, Y i la Dir
-var grupFantasmas = [];
-var quantitatFantasmas = 3;
+var grupoFantasmas = [];
+var cantidadFantasmas = 3;
 
 generarTablero();
 
 generarJugador();
+
 //comprobarDatosJugador(); //Variable que imprime con alert la inforamcion del jugador.
 
 generarFantasma();
 //comprobarDatosFantasma(); //Variable que imprime con alert la inforamcion de los fantasmas.
 
-imprimirTablero();
+imprimirTablero(); //Impimimos por primera vez el tablero.
+
 
 //---------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------TABLERO------------------------------------------------------------------------
@@ -72,7 +73,7 @@ function generarTablero() {
 
 
 function generarJugador() {
-    var pos = posicioValida();
+    var pos = movimientoValido();
     jugador.set("X", pos[0]);
     jugador.set("Y", pos[1]);
     //Aquestes variables son momentanies ja que en el futur no seran aleatories.
@@ -91,25 +92,36 @@ function comprobarDatosJugador() {
 //--------------------------------------------FANTASMAS----------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------
 
+function movimientoFantasma() {
+    for (var i = 0; i != cantidadFantasmas; i++) {
+        var variables = movimientoValido();
+        var fantasma = new Map();
+        fantasma.set("X", variables[0]);
+        fantasma.set("Y", variables[1]);
+        fantasma.set("Dir", variables[2]);
+        grupoFantasmas[i] = fantasma;
+    }
+}
+
 function generarFantasma() {
 
-    for (var i = 0; i != quantitatFantasmas; i++) {
+    for (var i = 0; i != cantidadFantasmas; i++) {
         var pos = posicionValida();
         var fantasma = new Map();
         fantasma.set("X", pos[0]);
         fantasma.set("Y", pos[1]);
         fantasma.set("Dir", direccionInicialValida(fantasma.get("X"), fantasma.get("Y")));
-        grupFantasmas[i] = fantasma;
+        grupoFantasmas[i] = fantasma;
     }
 
 }
 
 function comprobarDatosFantasma() {
-    for (var i = 0; i != quantitatFantasmas; i++) {
-        alert("Fantasma" + i + "-X: " + grupFantasmas[i].get("X"));
-        alert("Fantasma" + i + "-Y: " + grupFantasmas[i].get("Y"));
-        alert("Fantasma" + i + "-Dir: " + grupFantasmas[i].get("Dir"));
-        
+    for (var i = 0; i != cantidadFantasmas; i++) {
+        alert("Fantasma" + i + "-X: " + grupoFantasmas[i].get("X"));
+        alert("Fantasma" + i + "-Y: " + grupoFantasmas[i].get("Y"));
+        alert("Fantasma" + i + "-Dir: " + grupoFantasmas[i].get("Dir"));
+
     }
 }
 
@@ -117,11 +129,96 @@ function comprobarDatosFantasma() {
 //--------------------------------------------VARIABLES COMUNAS--------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------
 
+function refrescar(){
+    setInterval('refrescar()',1000);
+}
+
+function movimientoValido(posiX, posiY, dir) {
+    //0=Up(y+1), 1=Down(y-1), 2=Left(x-1), 3=Right(x+1), 4=Stop
+    var direccionValida = [0, 0, 0, 0, 0];
+    var count = 5;
+    var variables = [0,0,0]; //Esta variable devolvera la X, la Y y la dir.
+    //El switch comprueva donde se podra mover en funcion de la dirección que se tenia, 
+    //no permite volver atras para evitar que un fantasma se quede siempre en dos casillas dando vueltas.
+    switch (dir) {
+        case 0:
+            if (tablero[posiX][posiY + 1] == 1) {
+                direccionValida[0] = 1
+            }
+            if (tablero[posiX - 1][posiY] == 1) {
+                direccionValida[2] = 1
+            }
+            if (tablero[posiX + 1][posiY] == 1) {
+                direccionValida[3] = 1
+            }
+            break;
+        case 1:
+            if (tablero[posiX][posiY - 1] == 1) {
+                direccionValida[1] = 1
+            }
+            if (tablero[posiX - 1][posiY] == 1) {
+                direccionValida[2] = 1
+            }
+            if (tablero[posiX + 1][posiY] == 1) {
+                direccionValida[3] = 1
+            }
+            break;
+        case 2:
+            if (tablero[posiX][posiY + 1] == 1) {
+                direccionValida[0] = 1
+            }
+            if (tablero[posiX][posiY - 1] == 1) {
+                direccionValida[1] = 1
+            }
+            if (tablero[posiX - 1][posiY] == 1) {
+                direccionValida[2] = 1
+            }
+            break;
+        case 3:
+            if (tablero[posiX][posiY + 1] == 1) {
+                direccionValida[0] = 1
+            }
+            if (tablero[posiX][posiY - 1] == 1) {
+                direccionValida[1] = 1
+            }
+            if (tablero[posiX + 1][posiY] == 1) {
+                direccionValida[3] = 1
+            }
+            break;
+    }
+    //El while sirve para escoger una dirección aleatoria, en función 
+    //de la variable direccionValida, un array que contendra las direcciones
+    //a los que los fantasmas podran ir.
+    while (direccionValida[count] == 0) {
+        count = Math.floor(Math.random() * 4);
+    }
+    variables[2] = count; //Contien la dirección del fantasma.
+    switch(count)
+    {
+        case 0: 
+            variables[0] = posiX; //Contien la X del fantasma.
+            variables[1] = posiY+1; //Contien la Y del fantasma.
+            break;
+        case 1: 
+            variables[0] = posiX; //Contien la X del fantasma.
+            variables[1] = posiY-1; //Contien la Y del fantasma.
+            break;
+        case 2: 
+            variables[0] = posiX-1; //Contien la X del fantasma.
+            variables[1] = posiY; //Contien la Y del fantasma.
+            break;
+        case 3: 
+            variables[0] = posiX; //Contien la X del fantasma.
+            variables[1] = posiY+1; //Contien la Y del fantasma.
+            break;
+    }
+    return variables;
+}
 
 function direccionInicialValida(posiX, posiY) {
     //0=Up, 1=Down, 2=Left, 3=Right, 4=Stop
     var direccionValida = [0, 0, 0, 0, 0];
-    var count=5;
+    var count = 5;
     if (tablero[posiX][posiY + 1] == 1) {
         direccionValida[0] = 1
     }
@@ -134,7 +231,7 @@ function direccionInicialValida(posiX, posiY) {
     if (tablero[posiX + 1][posiY] == 1) {
         direccionValida[3] = 1
     }
-    while(direccionValida[count] == 0){
+    while (direccionValida[count] == 0) {
         count = Math.floor(Math.random() * 4);
     }
     return count;
@@ -172,14 +269,18 @@ function imprimirTablero() {
         for (var y = 0; y <= tablero[0].length - 1; y++) {
             if (jugador.get("X") == x && jugador.get("Y") == y) {
                 document.write("J" + "&nbsp");
-            } else if (grupFantasmas[0].get("X") == x && grupFantasmas[0].get("Y") == y) {
+            } else if (grupoFantasmas[0].get("X") == x && grupoFantasmas[0].get("Y") == y) {
                 document.write("F1" + "&nbsp");
-            } else if (grupFantasmas[1].get("X") == x && grupFantasmas[1].get("Y") == y) {
+            } else if (grupoFantasmas[1].get("X") == x && grupoFantasmas[1].get("Y") == y) {
                 document.write("F2" + "&nbsp");
-            } else if (grupFantasmas[2].get("X") == x && grupFantasmas[2].get("Y") == y) {
+            } else if (grupoFantasmas[2].get("X") == x && grupoFantasmas[2].get("Y") == y) {
                 document.write("F3" + "&nbsp");
             } else {
-                document.write(tablero[x][y] + "&nbsp");
+                if(tablero[x][y]==1){
+                    document.write(tablero[x][y] + "&nbsp");
+                }else{
+                    document.write("=" + "&nbsp");
+                }
             }
 
         }
