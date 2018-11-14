@@ -20,13 +20,10 @@ generarFantasma();
 //imprimirTablero(); //Impimimos por primera vez el tablero.
 imprimirInformacion();
 
-refrescar();//Este metodo entrara en bucle hasta que se acabe el juego.
-
+setInterval(refrescar, 100);//Este metodo entrara en bucle hasta que se acabe el juego.
 //---------------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------TABLERO------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------
-
-
 
 function generarTablero() {
     tablero = [
@@ -164,9 +161,8 @@ function movValido(posiX, posiY, dir) {
 }
 
 function movimientoValido(posiX, posiY, dir) {
-    //alert("dir:" + dir);
-    //0=Up(y+1), 1=Down(y-1), 2=Left(x-1), 3=Right(x+1), 4=Stop
-    var direccionValida = [0, 0, 0, 0, 0];
+    //0=Up(y+1), 1=Down(y-1), 2=Left(x-1), 3=Right(x+1)
+    var direccionValida = [0, 0, 0, 0];
     var variables = [0, 0, 0]; //Esta variable devolvera la X, la Y y la dir.
     //El switch comprueba donde se podra mover en funcion de la dirección que se tenia, 
     //no permite volver atras para evitar que un fantasma se quede siempre en dos casillas dando vueltas.
@@ -219,7 +215,7 @@ function movimientoValido(posiX, posiY, dir) {
     //El while sirve para escoger una dirección aleatoria, en función 
     //de la variable direccionValida, un array que contendra las direcciones
     //a los que los fantasmas podran ir.
-    while (direccionValida[dir] != 0) {
+    while (direccionValida[dir] == 0) {
         dir = Math.floor(Math.random() * 4);
     }
 
@@ -365,4 +361,3 @@ function comprobarCoordMinima(posiY) {
     return bool;
 }
 
-setInterval(refrescar, 1000);
