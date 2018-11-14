@@ -69,7 +69,6 @@ function generarTablero() {
 //--------------------------------------------JUGADOR------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------
 
-
 function generarJugador() {
     var pos = posicionValida();
     jugador.set("X", pos[0]);
@@ -77,6 +76,13 @@ function generarJugador() {
     //Aquestes variables son momentanies ja que en el futur no seran aleatories.
     jugador.set("Dir", Math.floor(Math.random() * 4));
     jugador.set("Teclado", Math.floor(Math.random() * 4));
+}
+
+function movimientoAutomaticJugador() {
+    var variables = movimientoValido(jugador.get("X"), jugador.get("Y"), jugador.get("Dir"));
+    jugador.set("X", variables[0]);
+    jugador.set("Y", variables[1]);
+    jugador.set("Dir", variables[2]);
 }
 
 function comprobarDatosJugador() {
@@ -90,16 +96,6 @@ function comprobarDatosJugador() {
 //--------------------------------------------FANTASMAS----------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------
 
-function movimientoFantasma() {
-    for (var i = 0; i != cantidadFantasmas; i++) {
-        //var variables = movValido(grupoFantasmas[i].get("X"), grupoFantasmas[i].get("Y"), grupoFantasmas[i].get("Dir"));
-        var variables = movimientoValido(grupoFantasmas[i].get("X"), grupoFantasmas[i].get("Y"), grupoFantasmas[i].get("Dir"));
-        grupoFantasmas[i].set("X", variables[0]);
-        grupoFantasmas[i].set("Y", variables[1]);
-        grupoFantasmas[i].set("Dir", variables[2]);
-    }
-}
-
 function generarFantasma() {
     for (var i = 0; i != cantidadFantasmas; i++) {
         var pos = posicionValida();
@@ -110,6 +106,16 @@ function generarFantasma() {
         grupoFantasmas[i] = fantasma;
     }
 
+}
+
+function movimientoFantasma() {
+    for (var i = 0; i != cantidadFantasmas; i++) {
+        //var variables = movValido(grupoFantasmas[i].get("X"), grupoFantasmas[i].get("Y"), grupoFantasmas[i].get("Dir"));
+        var variables = movimientoValido(grupoFantasmas[i].get("X"), grupoFantasmas[i].get("Y"), grupoFantasmas[i].get("Dir"));
+        grupoFantasmas[i].set("X", variables[0]);
+        grupoFantasmas[i].set("Y", variables[1]);
+        grupoFantasmas[i].set("Dir", variables[2]);
+    }
 }
 
 function comprobarDatosFantasma() {
@@ -128,6 +134,7 @@ function comprobarDatosFantasma() {
 function refrescar() {
     document.body.innerHTML = "";
     movimientoFantasma();
+    movimientoAutomaticJugador();
     imprimirTablero();
     imprimirInformacion();
 }
@@ -329,6 +336,8 @@ function imprimirInformacion() {
         document.write("Fantasma" + i + " X: " + grupoFantasmas[i].get("X") + " - Y: " + grupoFantasmas[i].get("Y") + " - Dir: " + grupoFantasmas[i].get("Dir"));
         document.write("</br>");
     }
+    document.write("Jugador" + " X: " + jugador.get("X") + " - Y: " + jugador.get("Y") + " - Dir: " + jugador.get("Dir"));
+    document.write("</br>");
 }
 
 function comprobarY(posiY) {
